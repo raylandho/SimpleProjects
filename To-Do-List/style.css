@@ -1,0 +1,68 @@
+.holder{
+    border: 1px solid black;
+    width: 1000px;
+    margin: auto;
+    margin-bottom: 100px;
+    background-color: azure;
+    height: 50px;
+    font-size: x-large;
+    text-align: center;
+}
+.container{
+    width: 600px;
+    border: 1px solid black;
+    margin: auto;
+    padding: 2px;
+    padding-top: 0px;
+    background-color: azure;
+    box-shadow: 3px 3px red, -1em 0 .4em olive;;
+}
+#waste{
+    background-color: darkcyan;
+    margin:0px;
+    height: 60px;
+}
+h1{
+    margin-left: 5%;
+    color:white;
+}
+#add-here{
+    padding: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.clickme{
+    border: 1px solid black;
+    border-top: none;
+    list-style-type: none;
+    width: 100%;
+    height: 60px;
+    font-size: x-large;
+}
+.clickme:hover{
+    background-color: coral;
+}
+#dummy{
+    display: none;
+    color: red;
+}
+button{
+    background-image: 🔲;
+    background-size: fill;
+}
+body{
+    font-family: 'Zen Antique', serif;
+    background-color: aquamarine;
+}
+#name-input{
+    visibility: visible;
+}
+#entered{
+    width: 99%;
+    height: 60px;
+    font-size: larger;
+    text-align: center;
+}
+.hider{
+    margin-left: 63%;
+}

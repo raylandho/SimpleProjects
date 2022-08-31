@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>todolist</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="dummy"></div>
+        <div class="holder">         
+            <form action="" method="" id="search-form">
+                Today's weather in
+                <select name="" class="form-control" id="limit-id">
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="New York">New York</option> 
+                    <option value="Chicago">Chicago</option>
+                </select>:
+                <span id="weather" class="font-weight-bold">1</span>°
+                <span id="description" class="font-weight-bold">1</span>.
+                Feels like: <span id="apparent" class="font-weight-bold">1</span>°
+            </form>     
+        </div>
+        <div class="container">
+            <div id="waste">
+                <h1>To Do List <button class="hider">➕</button></h1>
+            </div>
+            <form id="name-input">
+                <input type="text" placeholder="Add to-do item here" id="entered">
+            </form>
+            <ul id="add-here">
+                <li class="clickme"><button class="clicker">🔲</button> One</li>
+                <li class="clickme"><button class="clicker">🔲</button> Two</li>
+                <li class="clickme"><button class="clicker">🔲</button> Three</li>
+            </ul>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	    <script src="main.js"></script>
+    </body>
+</html>
