@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Ball Kinematics</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <button id="goButton">Go</button>
+    <button id="clearScreen">Clear</button>
+    <!--forms-->
+    <form>
+        <label for="velocity">Initial Velocity:</label>
+        <input type="number" id="velocity" name="velocity" value="50">
+
+        <label for="angleR">Degree Angle:</label>
+        <input type="number" id="angleR" name="angleR" value="45">
+
+        <label for="color">Color:</label>
+        <input type="color" id="color" name="color">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <canvas id="canvas" width="4500" height="500"></canvas>
+    <div id="time"></div>
+    <div id="peak"></div>
+    <div id="distance"></div>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        var t = 0;
+        var dt = 0.1;
+
+        var x0 = 30; // initial x position
+        var y0 = canvas.height - 30; // initial y position
+        var v0 = 50; // initial velocity
+        var angle = Math.PI/4; // angle of projection
+        var g = 9.8; // acceleration due to gravity
+        var maxHeight = 0; //peak of trajectory
+        var totalDistance = 0; // initialize total distance
+        var color = "red"; //color picker
+
+        function drawBall(x, y) {
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function updatePosition() {
+            var x = x0 + v0*Math.cos(angle)*t; // x position
+            var y = y0 - v0*Math.sin(angle)*t + 0.5*g*t*t; // y position
+            drawBall(x, y);
+
+            // calculate distance traveled and add to total distance
+            var dx = x - (x0 + v0*Math.cos(angle)*(t - dt));
+            var dy = y - (y0 - v0*Math.sin(angle)*(t - dt) + 0.5*g*(t - dt)*(t - dt));
+            var distance = Math.sqrt(dx*dx + dy*dy);
+            totalDistance += distance;
+            if(y > maxHeight){
+                maxHeight = y;
+                maxHeight = 500 - maxHeight;
+            }
+            t += dt;
+        }
+
+        function animate() {
+            updatePosition();
+            if (y0 - v0*Math.sin(angle)*t + 0.5*g*t*t < y0) {
+                window.requestAnimationFrame(animate);
+            }
+        }
+
+        drawBall(x0, y0);
+        document.getElementById("goButton").addEventListener("click", function(){
+            //clearCanvas();
+            t = 0;
+            totalDistance = 0; // reset total distance
+            animate();
+        });
+        document.getElementById("clearScreen").addEventListener("click", function(){
+            clearCanvas();
+            t = 0;
+            totalDistance = 0;
+        });
+        //forms
+        document.querySelector('form').addEventListener('submit', function(e){
+            e.preventDefault();
+            v0 = document.getElementById('velocity').value;
+            angle = document.getElementById('angleR').value * Math.PI / 180;
+            color = document.getElementById('color').value;
+            t = 0;
+        });
+        // display total distance traveled
+        setInterval(function(){
+            document.getElementById("time").textContent = "Time: " + t.toFixed(1) + "s";
+            document.getElementById("distance").innerHTML = "Distance: " + totalDistance.toFixed(2) + " pixels OR " + 
+            (v0*Math.cos(angle) * t).toFixed(2) + " meters";
+            document.getElementById("peak").textContent = "Peak: " + maxHeight.toFixed(2) + " pixels OR " + 
+            (v0*Math.sin(angle) * (t/2) + 0.5*g*(t/2)*(t/2)).toFixed(2) + " meters";
+        }, 100);
+    </script>
+</body>
+</html>
