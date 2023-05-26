@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="utf-8">
+    <title>Damped Harmonic Motion Simulation</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+        #positionCanvas {
+            height: 500px;
+            width: 800px;
+        }
+        #massCanvas {
+            height: 500px;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="k">Spring Constant:</label>
+        <input type="text" id="k" name="k" value="0.1">
+
+        <label for="m">Mass:</label>
+        <input type="text" id="m" name="m" value="1">
+
+        <label for="b">Damping Coefficient:</label>
+        <input type="text" id="b" name="b" value="0.02">
+
+        <label for="x0">Initial Displacement:</label>
+        <input type="text" id="x0" name="x0" value="20">
+
+        <input type="submit" value="Submit">
+    </form>
+    <canvas id="positionCanvas" width="800" height="500"></canvas>
+    <canvas id="massCanvas" width="800" height="500"></canvas>
+    <button id="startButton">Start</button>
+    <button id="stopButton" >Stop</button>
+    <button id="clearButton">Restart</button>
+    <div id="Time"></div>
+    <div id="Velocity"></div>
+    <div id="Position"></div>
+    <script src="script.js"></script>
+</body>
+</html>
+
